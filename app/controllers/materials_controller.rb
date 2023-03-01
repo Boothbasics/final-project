@@ -1,5 +1,22 @@
 class MaterialsController < ApplicationController
   def index
+    url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
+
+    #extract data
+    materials_data = open(url).read
+    parsed_data = JSON.parse(materials_data)
+    
+    #Isolate material names
+    ingredient_array = parsed_data.fetch("drinks")
+
+    #Create db entry per new material (model will check for name uniqueness)
+    #Only 100 ingredients so should be quick? May look to set up some sort of periodic checker vs every time.
+    ingredient_array.each do |a_material|
+      m = Material.new
+      m.name = a_material.fetch("strIngredient1")
+      m.save
+    end
+
     matching_materials = Material.all
 
     @list_of_materials = matching_materials.order({ :created_at => :desc })

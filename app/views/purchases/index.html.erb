@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all purchases
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new purchase
+    </h2>
+
+    <form action="/insert_purchase" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="material_id_box">
+          Material
+        </label>
+
+        <input type="text" id="material_id_box" name="query_material_id">
+      </div>
+
+      <button>
+        Create purchase
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Material
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_purchases.each do |a_purchase| %>
+      <tr>
+        <td>
+          <%= a_purchase.id %>
+        </td>
+
+        <td>
+          <%= a_purchase.user_id %>
+        </td>
+
+        <td>
+          <%= a_purchase.material_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_purchase.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_purchase.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/purchases/<%= a_purchase.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

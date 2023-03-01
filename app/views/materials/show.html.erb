@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Material #<%= @the_material.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/materials">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_material/<%= @the_material.id %>">
+          Delete material
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_material.name %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_material.description %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_material.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_material.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit material
+    </h2>
+
+    <form action="/modify_material/<%= @the_material.id %>"  method="post" >
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_material.name %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_material.description %>">
+      </div>
+
+      <button>
+        Update material
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

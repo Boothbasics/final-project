@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all materials
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new material
+    </h2>
+
+    <form action="/insert_material" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <button>
+        Create material
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_materials.each do |a_material| %>
+      <tr>
+        <td>
+          <%= a_material.id %>
+        </td>
+
+        <td>
+          <%= a_material.name %>
+        </td>
+
+        <td>
+          <%= a_material.description %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_material.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_material.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/materials/<%= a_material.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

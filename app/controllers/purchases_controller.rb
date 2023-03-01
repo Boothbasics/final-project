@@ -1,9 +1,10 @@
 class PurchasesController < ApplicationController
   def index
+    
+    @list_of_materials = Material.all.order({ :name => :asc})
+    
     matching_purchases = Purchase.all
-
-    @list_of_purchases = matching_purchases.order({ :created_at => :desc })
-
+    @list_of_purchases = matching_purchases.order({ :name => :asc })
     render({ :template => "purchases/index.html.erb" })
   end
 
@@ -19,7 +20,7 @@ class PurchasesController < ApplicationController
 
   def create
     the_purchase = Purchase.new
-    the_purchase.user_id = params.fetch("query_user_id")
+    the_purchase.user_id = session[:user_id]
     the_purchase.material_id = params.fetch("query_material_id")
 
     if the_purchase.valid?

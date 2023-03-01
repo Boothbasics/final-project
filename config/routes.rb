@@ -2,25 +2,6 @@ Rails.application.routes.draw do
 
 
 
-  # Routes for the Purchase resource:
-
-  # CREATE
-  post("/insert_purchase", { :controller => "purchases", :action => "create" })
-          
-  # READ
-  get("/purchases", { :controller => "purchases", :action => "index" })
-  
-  get("/purchases/:path_id", { :controller => "purchases", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_purchase/:path_id", { :controller => "purchases", :action => "update" })
-  
-  # DELETE
-  get("/delete_purchase/:path_id", { :controller => "purchases", :action => "destroy" })
-
-  #------------------------------
-
   # Routes for the Material resource:
 
   # CREATE
@@ -37,6 +18,25 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_material/:path_id", { :controller => "materials", :action => "destroy" })
+
+  #------------------------------
+
+  # Routes for the Purchase resource:
+
+  # CREATE
+  post("/insert_purchase", { :controller => "purchases", :action => "create" })
+          
+  # READ
+  get("/purchases", { :controller => "purchases", :action => "index" })
+  
+  get("/purchases/:path_id", { :controller => "purchases", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_purchase/:path_id", { :controller => "purchases", :action => "update" })
+  
+  # DELETE
+  get("/delete_purchase/:path_id", { :controller => "purchases", :action => "destroy" })
 
   #------------------------------
 

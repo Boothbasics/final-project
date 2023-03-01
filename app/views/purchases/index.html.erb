@@ -16,24 +16,18 @@
 
     <form action="/insert_purchase" method="post">
       <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
-
-      <div>
         <label for="material_id_box">
           Material
         </label>
-
-        <input type="text" id="material_id_box" name="query_material_id">
-      </div>
-
+        <select id="material_id_box" name="query_material_id">
+          <% @list_of_materials.each do |a_material| %>
+          <option value = "<%= a_material.id %>"> <%= a_material.name %></option>
+          <% end %>
+        </select>  
       <button>
-        Create purchase
+        Add to bar
       </button>
+      </div>
     </form>
   </div>
 </div>
@@ -44,25 +38,8 @@
     <table border="1">
       <tr>
         <th>
-          ID
+          Material name
         </th>
-
-        <th>
-          User
-        </th>
-
-        <th>
-          Material
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
         <th>
         </th>
       </tr>
@@ -70,29 +47,12 @@
       <% @list_of_purchases.each do |a_purchase| %>
       <tr>
         <td>
-          <%= a_purchase.id %>
-        </td>
-
-        <td>
-          <%= a_purchase.user_id %>
-        </td>
-
-        <td>
-          <%= a_purchase.material_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_purchase.created_at) %> ago
+          <%= a_purchase.material.name %>
         </td>
         <td>
-          <%= time_ago_in_words(a_purchase.updated_at) %> ago
+          <a href="/delete_purchase/<%= a_purchase.id %>">Remove from bar</a>
         </td>
-
-        <td>
-          <a href="/purchases/<%= a_purchase.id %>">
-            Show details
-          </a>
-        </td>
+        
       </tr>
       <% end %>
     </table>

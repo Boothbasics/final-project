@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   #Direct Associations
   has_many(:purchases, { :class_name => "Purchase", :foreign_key => "user_id", :dependent => :destroy })
+  has_many(:recipes, { :class_name => "Recipe", :foreign_key => "user_id", :dependent => :nullify })
   
   #Indirect Associations
   has_many(:materials, { :through => :purchases, :source => :material })

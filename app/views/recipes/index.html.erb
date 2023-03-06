@@ -1,0 +1,150 @@
+<div>
+  <div>
+    <h1>
+      List of all recipes
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new recipe
+    </h2>
+
+    <form action="/insert_recipe" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="instructions_box">
+          Instructions
+        </label>
+
+        <textarea id="instructions_box" name="query_instructions" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="ingredients_count_box">
+          Ingredients count
+        </label>
+
+        <input type="text" id="ingredients_count_box" name="query_ingredients_count">
+      </div>
+
+      <button>
+        Create recipe
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Instructions
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Ingredients count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_recipes.each do |a_recipe| %>
+      <tr>
+        <td>
+          <%= a_recipe.id %>
+        </td>
+
+        <td>
+          <%= a_recipe.name %>
+        </td>
+
+        <td>
+          <%= a_recipe.instructions %>
+        </td>
+
+        <td>
+          <%= a_recipe.image %>
+        </td>
+
+        <td>
+          <%= a_recipe.user_id %>
+        </td>
+
+        <td>
+          <%= a_recipe.ingredients_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_recipe.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_recipe.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/recipes/<%= a_recipe.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

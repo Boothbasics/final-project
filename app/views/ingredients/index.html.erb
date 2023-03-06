@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all ingredients
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new ingredient
+    </h2>
+
+    <form action="/insert_ingredient" method="post">
+      <div>
+        <label for="material_id_box">
+          Material
+        </label>
+
+        <input type="text" id="material_id_box" name="query_material_id">
+      </div>
+
+      <div>
+        <label for="measure_box">
+          Measure
+        </label>
+
+        <input type="text" id="measure_box" name="query_measure">
+      </div>
+
+      <div>
+        <label for="recipe_id_box">
+          Recipe
+        </label>
+
+        <input type="text" id="recipe_id_box" name="query_recipe_id">
+      </div>
+
+      <button>
+        Create ingredient
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Material
+        </th>
+
+        <th>
+          Measure
+        </th>
+
+        <th>
+          Recipe
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_ingredients.each do |an_ingredient| %>
+      <tr>
+        <td>
+          <%= an_ingredient.id %>
+        </td>
+
+        <td>
+          <%= an_ingredient.material_id %>
+        </td>
+
+        <td>
+          <%= an_ingredient.measure %>
+        </td>
+
+        <td>
+          <%= an_ingredient.recipe_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_ingredient.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_ingredient.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/ingredients/<%= an_ingredient.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

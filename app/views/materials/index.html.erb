@@ -44,9 +44,6 @@
   <div>
     <table border="1">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Name
@@ -57,14 +54,14 @@
         </th>
 
         <th>
+        <% if session.fetch(:user_id) == nil %>
+          Sign up/Sign in to start adding to your bar
+        <% end %>
         </th>
       </tr>
 
       <% @list_of_materials.each do |a_material| %>
       <tr>
-        <td>
-          <%= a_material.id %>
-        </td>
 
         <td>
           <%= a_material.name %>
@@ -73,12 +70,17 @@
         <td>
           <%= a_material.description %>
         </td>
-
+        <% if session.fetch(:user_id) != nil %>
         <td>
-          <a href="/materials/<%= a_material.id %>">
-            Show details
-          </a>
+          <form action="/insert_purchase" method="post">
+            <input type="hidden" id="material_id_box" name="query_material_id" value="<%= a_material.id %>">
+
+            <button>
+              Add to bar
+            </button>
+          </form>
         </td>
+        <% end %>
       </tr>
       <% end %>
     </table>

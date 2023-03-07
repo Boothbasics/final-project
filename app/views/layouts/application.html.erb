@@ -17,10 +17,12 @@
 
   <body>
     <nav>
+      <h1>Bar Cart Assistant: Cocktail recommendations based on your bar
+      </h1>
       <ul>
           <li><a href="/materials">Materials</a></li>
         <% if session.fetch(:user_id) != nil %>
-          <li><a href="/purchases">My Materials</a></li>
+          <li><a href="/purchases">My Bar</a></li>
           <li><a href="/user_sign_out">Sign out</a></li>
         <% else %>
           <li><a href="/user_sign_up">Sign up</a></li>

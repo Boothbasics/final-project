@@ -2,7 +2,7 @@ class MaterialsController < ApplicationController
   def index
     matching_materials = Material.all
 
-    @list_of_materials = matching_materials.order({ :created_at => :desc })
+    @list_of_materials = matching_materials.order({ :name => :asc })
 
     render({ :template => "materials/index.html.erb" })
   end

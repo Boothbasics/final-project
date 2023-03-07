@@ -10,6 +10,7 @@
 
 <div>
   <div>
+  <% if session.fetch(:user_id) != nil %>
     <h2>
       Add a new recipe
     </h2>
@@ -17,7 +18,7 @@
     <form action="/insert_recipe" method="post">
       <div>
         <label for="name_box">
-          Name
+          Cocktail name
         </label>
 
         <input type="text" id="name_box" name="query_name">
@@ -40,14 +41,6 @@
       </div>
 
       <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
-
-      <div>
         <label for="ingredients_count_box">
           Ingredients count
         </label>
@@ -59,8 +52,11 @@
         Create recipe
       </button>
     </form>
-  </div>
+  <% else %>
+  <% end %>
+  </div> 
 </div>
+
 
 <hr>
 <div>
@@ -84,21 +80,8 @@
         </th>
 
         <th>
-          User
+          Contributor
         </th>
-
-        <th>
-          Ingredients count
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
         <th>
         </th>
       </tr>
@@ -118,22 +101,11 @@
         </td>
 
         <td>
-          <%= a_recipe.image %>
+          <img src="<%= a_recipe.image %>/preview">
         </td>
 
         <td>
           <%= a_recipe.user_id %>
-        </td>
-
-        <td>
-          <%= a_recipe.ingredients_count %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_recipe.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_recipe.updated_at) %> ago
         </td>
 
         <td>

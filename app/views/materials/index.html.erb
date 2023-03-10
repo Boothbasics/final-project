@@ -50,7 +50,7 @@
         </th>
 
         <th>
-          Description
+          Image
         </th>
 
         <th>
@@ -68,17 +68,22 @@
         </td>
 
         <td>
-          <%= a_material.description %>
+          <img src="https://www.thecocktaildb.com/images/ingredients/<%= a_material.name %>-Small.png">
         </td>
         <% if session.fetch(:user_id) != nil %>
         <td>
-          <form action="/insert_purchase" method="post">
-            <input type="hidden" id="material_id_box" name="query_material_id" value="<%= a_material.id %>">
+          <div class="btn-group" role="group" >
+            <a class="btn btn-outline-primary" href="/materials/<%= a_material.id %>">
+              Show details
+            </a>
+            <form action="/insert_purchase" method="post">
+              <input type="hidden" id="material_id_box" name="query_material_id" value="<%= a_material.id %>">
 
-            <button class="btn btn-primary">
-              Add to bar
-            </button>
-          </form>
+              <button class="btn btn-primary">
+                Add to bar
+              </button>
+            </form>
+          </div>
         </td>
         <% end %>
       </tr>
@@ -86,5 +91,3 @@
     </table>
   </div>
 </div>
-
-<hr>

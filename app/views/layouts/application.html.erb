@@ -17,19 +17,33 @@
   </head>
 
   <body>
-    <nav>
-      <h1>Bar Cart Assistant: Cocktail recommendations based on your bar
-      </h1>
-      <ul>
-          <li><a href="/materials">Materials</a></li>
-        <% if session.fetch(:user_id) != nil %>
-          <li><a href="/purchases">My Bar</a></li>
-          <li><a href="/user_sign_out">Sign out</a></li>
-        <% else %>
-          <li><a href="/user_sign_up">Sign up</a></li>
-          <li><a href="/user_sign_in">Sign in</a></li>
-        <% end %>
-      </ul>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <h4>Bar Cart Assistant</h4>
+
+      <div class="container-fluid">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Recommendations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/purchases">My Bar Cart</a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/materials">Cocktail Materials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/recipes">All Recipes</a>
+          </li>
+          <% if session.fetch(:user_id) != nil %>
+            <li><a class="nav-link" href="/user_sign_out">Sign out</a></li>
+          <% else %>
+            <li><a class="nav-link" href="/user_sign_up">Sign up</a></li>
+            <li><a class="nav-link" href="/user_sign_in">Sign in</a></li>
+          <% end %>
+        </ul>
+      </div>
+
     </nav>
 
     <% if notice.present? %>

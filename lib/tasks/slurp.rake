@@ -6,6 +6,7 @@ namespace :slurp do
     csv_text = File.read(Rails.root.join("lib", "csvs", "cocktail_list.csv"))
     csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
     csv.each do |row|
+      #Extract cocktail name for recipe search
       cocktail_name = row[0].gsub(" ","%20")
 
       if cocktail_name.include?"xA"

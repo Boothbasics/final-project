@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   # Homepage should direct to recipes page
-  get("/", { :controller => "recipes", :action => "index" })
+  get("/", { :controller => "recipes", :action => "homepage" })
 
   # Routes for the Ingredient resource:
 
@@ -66,6 +66,8 @@ Rails.application.routes.draw do
   post("/insert_purchase", { :controller => "purchases", :action => "create" })
 
   # READ
+  get("/barcart", { :controller => "purchases", :action => "index" })
+
   get("/purchases", { :controller => "purchases", :action => "index" })
 
   get("/purchases/:path_id", { :controller => "purchases", :action => "show" })

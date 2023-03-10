@@ -22,15 +22,11 @@
         </th>
 
         <th>
-          Image
-        </th>
-
-        <th>
-          Ingredients
-        </th>
-
-        <th>
           Instructions
+        </th>
+
+        <th>
+          Image
         </th>
 
         <th>
@@ -51,19 +47,11 @@
         </td>
 
         <td>
-          <img src="<%= a_recipe.image %>/preview">
-        </td>
-
-        <td>
-          <ul>
-          <% a_recipe.ingredients.each do |an_ingredient| %>
-            <li><%= an_ingredient.material.name %> <% if an_ingredient.measure.class==String %>(<%= an_ingredient.measure %>) <% end %></li>
-          <% end %>
-          </ul>
-        </td>
-
-        <td>
           <%= a_recipe.instructions %>
+        </td>
+
+        <td>
+          <img src="<%= a_recipe.image %>/preview">
         </td>
 
         <td>

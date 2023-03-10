@@ -3,7 +3,8 @@ class PurchasesController < ApplicationController
     
     @list_of_materials = Material.all.order({ :name => :asc})
     
-    matching_purchases = Purchase.all
+    @user_id = session[:user_id]
+    matching_purchases = Purchase.where({ :user_id => @user_id})
     @list_of_purchases = matching_purchases.order({ :name => :asc })
     render({ :template => "purchases/index.html.erb" })
   end

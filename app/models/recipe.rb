@@ -18,4 +18,7 @@ class Recipe < ApplicationRecord
   belongs_to(:user, { :class_name => "User", :foreign_key => "user_id" })
   has_many(:ingredients, { :class_name => "Ingredient", :foreign_key => "recipe_id", :dependent => :destroy })
 
+  #Indirect Associations
+  has_many(:materials, { :through => :ingredients, :source => :material })
+
 end

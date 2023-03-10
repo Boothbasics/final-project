@@ -24,7 +24,7 @@
           <option value = "<%= a_material.id %>"> <%= a_material.name %></option>
           <% end %>
         </select>  
-      <button>
+      <button class="btn btn-primary">
         Add to bar
       </button>
       </div>
@@ -33,6 +33,8 @@
 </div>
 
 <hr>
+<% if @list_of_purchases == nil %>
+<% else %>
 <div>
   <div>
     <table border="1">
@@ -50,7 +52,7 @@
           <%= a_purchase.material.name %>
         </td>
         <td>
-          <a href="/delete_purchase/<%= a_purchase.id %>">Remove from bar</a>
+          <a class="btn btn-secondary" href="/delete_purchase/<%= a_purchase.id %>">Remove from bar</a>
         </td>
         
       </tr>
@@ -58,5 +60,6 @@
     </table>
   </div>
 </div>
+<% end %>
 
 <hr>

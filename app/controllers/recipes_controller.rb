@@ -1,8 +1,29 @@
 class RecipesController < ApplicationController
+  
+  def homepage
+    
+    #Identify purchases tied to user account
+    @user_id = session[:user_id]
+    @matching_purchases = Purchase.where({ :user_id => @user_id})
+    
+    #Identify materials tied to user account
+    matching_material_ids = @matching_purchases.map_relation_to_array(:material_id)
+
+    #Identify ingredients not tied to materials tied to user account, to identify a list of recipes that contain absent ingredients
+    impossible_recipe_ids = Ingredient.where.not({ :material_id => matching_material_ids}).map_relation_to_array(:recipe_id)
+
+    #Build a list of recipes excluding the id's of "impossible recipes" that use absent ingredients
+    matching_recipes = Recipe.where.not({:id => impossible_recipe_ids})
+
+    @list_of_recipes = matching_recipes.order({ :name => :asc })
+
+    render({ :template => "recipes/personalized.html.erb" })
+  end
+
   def index
     matching_recipes = Recipe.all
 
-    @list_of_recipes = matching_recipes.order({ :created_at => :desc })
+    @list_of_recipes = matching_recipes.order({ :name => :asc })
 
     render({ :template => "recipes/index.html.erb" })
   end

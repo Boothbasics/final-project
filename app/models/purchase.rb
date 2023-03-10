@@ -9,6 +9,7 @@
 #  user_id     :integer
 #
 class Purchase < ApplicationRecord
+  validates :material_id, uniqueness: { scope: :user_id, message: "is already in your bar" }
 
   #Direct Associations
   belongs_to(:user, { :required => true, :class_name => "User", :foreign_key => "user_id", :counter_cache => true })

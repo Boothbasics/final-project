@@ -19,11 +19,10 @@ task({ :sample_data => :environment }) do
     else
       ingredient_hash = ingredient_array.first
     end
-    print(ingredient_hash.fetch("strIngredient"))
 
     #Isolate & save material attributes
     m = Material.new
-    m.name = ingredient_hash.fetch("strIngredient")
+    m.name = ingredient_hash.fetch("strIngredient").capitalize
     m.description = ingredient_hash.fetch("strDescription")
     m.save
 

@@ -8,65 +8,19 @@
 
 <hr>
 
-<hr>
-<div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Name
-        </th>
-
-        <th>
-          Instructions
-        </th>
-
-        <th>
-          Image
-        </th>
-
-        <th>
-          Contributor
-        </th>
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_recipes.each do |a_recipe| %>
-      <tr>
-        <td>
-          <%= a_recipe.id %>
-        </td>
-
-        <td>
-          <%= a_recipe.name %>
-        </td>
-
-        <td>
-          <%= a_recipe.instructions %>
-        </td>
-
-        <td>
-          <img src="<%= a_recipe.image %>/preview">
-        </td>
-
-        <td>
-          <%= a_recipe.user_id %>
-        </td>
-
-        <td>
-          <a href="/recipes/<%= a_recipe.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+<% @list_of_recipes.each do |a_recipe| %>
+<div class="card" style="width: 18rem;">
+  <img src="<%= a_recipe.image %>/preview" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><%= a_recipe.name %></h5>
+    <p class="card-text"><%= a_recipe.instructions %></p>
+    <a href="/recipes/<%= a_recipe.id %>" class="btn btn-primary">Show details</a>
   </div>
+    <ul class="list-group list-group-flush">
+    <% a_recipe.ingredients.each do |an_ingredient| %>
+      <li class="list-group-item"><%= an_ingredient.material.name %> <% if an_ingredient.measure.class==String %>(<%= an_ingredient.measure %>)</li>
+      <% end %>
+    <% end %>
+    </ul>
 </div>
-
-<hr>
+<% end %>

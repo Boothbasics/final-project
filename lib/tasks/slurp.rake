@@ -33,7 +33,7 @@ namespace :slurp do
   
       #Isolate & save material attributes
       r = Recipe.new
-      r.name = recipe_hash.fetch("strDrink")
+      r.name = recipe_hash.fetch("strDrink").capitalize
       r.instructions = recipe_hash.fetch("strInstructions")
       r.image = recipe_hash.fetch("strDrinkThumb")
       r.save
@@ -41,11 +41,13 @@ namespace :slurp do
       
       15.times do |count|
         id_num = count + 1
-        ing_name = recipe_hash.fetch("strIngredient"+id_num.to_s)
-        if ing_name == nil
+        null_check = recipe_hash.fetch("strIngredient"+id_num.to_s)
+        if null_check == nil
           break
         end
-        
+
+        ing_name = null_check.capitalize
+
         i = Ingredient.new
         i.measure = recipe_hash.fetch("strMeasure"+id_num.to_s)
         i.recipe_id = r.id
@@ -62,7 +64,10 @@ namespace :slurp do
         end
         
         i.save
-        
+        print i.material.class
+        print "*"
+        print ing_name
+        print "|"
       end
     end
     
